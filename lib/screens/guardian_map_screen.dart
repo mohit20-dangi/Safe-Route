@@ -101,10 +101,12 @@ class _GuardianMapScreenState extends State<GuardianMapScreen> {
   ({String text, Color color}) _status(Map<String, dynamic> t) {
     final l = t['lastLocation'] as Map<String, dynamic>?;
     final ts = (l?['ts'] as Timestamp?)?.toDate();
-    if (l == null || ts == null)
+    if (l == null || ts == null) {
       return (text: 'Waiting for GPS', color: Colors.grey);
-    if (l['locationEnabled'] == false)
+    }
+    if (l['locationEnabled'] == false) {
       return (text: 'GPS OFF', color: Colors.red);
+    }
     final age = DateTime.now().difference(ts);
     if (age.inMinutes >= 5) {
       return (text: 'No update ${age.inMinutes} min', color: Colors.red);

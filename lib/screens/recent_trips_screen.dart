@@ -43,8 +43,9 @@ class RecentTripsScreen extends StatelessWidget {
                                 0,
                           ),
                 );
-          if (trips.isEmpty)
+          if (trips.isEmpty) {
             return const Center(child: Text('No recent trips.'));
+          }
           return ListView(
             children: [
               for (final t in trips)

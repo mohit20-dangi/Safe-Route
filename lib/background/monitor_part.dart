@@ -102,8 +102,9 @@ class MonitorPart {
 
   void _onTrip(String g, DocumentSnapshot<Map<String, dynamic>> doc) {
     final d = doc.data();
-    if (d == null || d['travelerUid'] == _uid)
+    if (d == null || d['travelerUid'] == _uid) {
       return; // don't alert on my own trip
+    }
 
     var t = _active[doc.id];
     if (t == null) {

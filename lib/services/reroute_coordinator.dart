@@ -16,8 +16,9 @@ Future<void> requestReroute(
   final claimed = await FirebaseFirestore.instance.runTransaction((tx) async {
     final r = (await tx.get(trip)).data()?['reroute'] as Map<String, dynamic>?;
     final at = (r?['claimedAt'] as Timestamp?)?.toDate();
-    if (at != null && DateTime.now().difference(at).inSeconds < 60)
+    if (at != null && DateTime.now().difference(at).inSeconds < 60) {
       return false;
+    }
     tx.update(trip, {
       'reroute': {
         'claimedBy': myUid,
